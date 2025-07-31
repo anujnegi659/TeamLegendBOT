@@ -10,7 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 COC_API_TOKEN = os.getenv("COC_API_TOKEN")
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = os.getenv("DISCORD_TOKEN")  # <- Match exactly what Render expects
+
 
 
 LINK_FILE = 'linked_clans.json'
@@ -770,7 +771,13 @@ async def help_command(ctx):
 
 
 
+# ... your other code above
+
+import requests
+ip = requests.get("https://api.ipify.org").text
+print("🔍 Render server public IP:", ip)
+
 
 
 # --- RUN BOT ---
-bot.run(os.getenv("DISCORD_TOKEN"))
+bot.run(BOT_TOKEN)
